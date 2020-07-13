@@ -8,7 +8,7 @@ namespace WargamingAPI.WoT.Models
     {
         public Player player { get; set; }
 
-        public int clan_id { get; set; }
+        public int? clan_id { get; set; }
 
         public DateTime created_at { get; set; }
 

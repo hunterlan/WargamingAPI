@@ -22,7 +22,7 @@ namespace WargamingAPI.WoT
             return resultResponse;
         }
 
-        protected DateTime ConvertFromTimestamp(int timestap)
+        public static DateTime ConvertFromTimestamp(int timestap)
         {
             DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
             return origin.AddSeconds(timestap).ToUniversalTime();

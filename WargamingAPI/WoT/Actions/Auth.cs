@@ -57,5 +57,13 @@ namespace WargamingAPI.WoT.Actions
                 return false;
             }
         }
+
+        public void DestroyToken(string application_id, string access_token)
+        {
+            string finalUrlRequest = string.Concat(authLink, typesInqury[2],
+                "application_id=", application_id, "&access_token=", access_token);
+
+            Request.GetResponse(finalUrlRequest);
+        }
     }
 }

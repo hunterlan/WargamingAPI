@@ -79,7 +79,7 @@ namespace WargamingAPI.WoT.Actions
             PublicAccountInfo accountInfo = new PublicAccountInfo();
             accountInfo.player = player;
 
-            string finalUrlRequest = string.Concat(accountLink, typesInqury[0],
+            string finalUrlRequest = string.Concat(accountLink, typesInqury[1],
                 "application_id=", application_id, "&account_id=", player.account_id);
 
             string response = Request.GetResponse(finalUrlRequest);
@@ -130,7 +130,7 @@ namespace WargamingAPI.WoT.Actions
         {
             List<Tank> tanks = new List<Tank>();
 
-            string finalUrlRequest = string.Concat(accountLink, typesInqury[0],
+            string finalUrlRequest = string.Concat(accountLink, typesInqury[2],
                 "application_id=", application_id, "&account_id=", player.account_id);
 
             string response = Request.GetResponse(finalUrlRequest);
@@ -161,7 +161,7 @@ namespace WargamingAPI.WoT.Actions
         {
             PlayersAchivment playersAchivment = new PlayersAchivment();
 
-            string finalUrlRequest = string.Concat(accountLink, typesInqury[0],
+            string finalUrlRequest = string.Concat(accountLink, typesInqury[3],
                 "application_id=", application_id, "&account_id=", player.account_id);
 
             string response = Request.GetResponse(finalUrlRequest);

@@ -125,6 +125,57 @@ namespace WargamingAPI.WoT.Actions
 
             return accountInfo;
         }
+
+        public List<Tank> GetPlayersTank(string application_id, Player player)
+        {
+            List<Tank> tanks = new List<Tank>();
+
+            string finalUrlRequest = string.Concat(accountLink, typesInqury[0],
+                "application_id=", application_id, "&account_id=", player.account_id);
+
+            string response = Request.GetResponse(finalUrlRequest);
+            dynamic parsed = JsonConvert.DeserializeObject(response);
+            string status = parsed.status;
+
+            if (status == "ok")
+            {
+                string strAccId = player.account_id.ToString();
+                int countTanks = (int)parsed["data"][strAccId].Count;
+                for (int i = 0; i < countTanks; i++)
+                {
+                    Tank tank = new Tank();
+
+                    tank.mark_of_mastery = parsed["data"][strAccId][i]["mark_of_mastery"];
+                    tank.tank_id = parsed["data"][strAccId][i]["tank_id"];
+                    tank.battles = parsed["data"][strAccId][i]["statistics"]["battles"];
+                    tank.wins = parsed["data"][strAccId][i]["statistics"]["wins"];
+
+                    tanks.Add(tank);
+                }
+            }
+
+            return tanks;
+        }
+
+        public PlayersAchivment GetPlayersAchivment(string application_id, Player player)
+        {
+            PlayersAchivment playersAchivment = new PlayersAchivment();
+
+            string finalUrlRequest = string.Concat(accountLink, typesInqury[0],
+                "application_id=", application_id, "&account_id=", player.account_id);
+
+            string response = Request.GetResponse(finalUrlRequest);
+            dynamic parsed = JsonConvert.DeserializeObject(response);
+            string status = parsed.status;
+            
+            if (status == "ok")
+            {
+                string strAccId = player.account_id.ToString();
+                playersAchivment = (PlayersAchivment)parsed["data"][strAccId];
+            }
+
+            return playersAchivment;
+        }
     }
 }
 

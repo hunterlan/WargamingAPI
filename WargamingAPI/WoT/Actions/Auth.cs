@@ -15,6 +15,7 @@ namespace WargamingAPI.WoT.Actions
             authLink = "https://api.worldoftanks.ru/wot/auth";
             typesInqury = new List<string>() { "login/?", "prolongate/?", "logout/?" };
         }
+        //Token expires at 2 weeks
         public string GetAccessToken(string application_id)
         {
             string token = "";

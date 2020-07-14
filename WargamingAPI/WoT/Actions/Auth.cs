@@ -16,6 +16,7 @@ namespace WargamingAPI.WoT.Actions
             typesInqury = new List<string>() { "login/?", "prolongate/?", "logout/?" };
         }
         //Token expires at 2 weeks
+        //TO-DO: Add non required fields
         public string GetAccessToken(string application_id)
         {
             string token = "";
@@ -30,8 +31,31 @@ namespace WargamingAPI.WoT.Actions
             {
                 token = parsed.access_token;
             }
+            else
+            {
+                //TO-DO: Work with exceptions
+            }
 
             return token;
+        }
+
+        public bool ProlongateToken(string application_id, string access_token)
+        {
+            string finalUrlRequest = string.Concat(authLink, typesInqury[1],
+                "application_id=", application_id, "&access_token=", access_token);
+
+            string response = Request.GetResponse(finalUrlRequest);
+            dynamic parsed = JsonConvert.DeserializeObject(response);
+            string status = parsed.status;
+
+            if (status == "ok")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -24,8 +24,9 @@ namespace WargamingAPI.WoT
 
         public static DateTime ConvertFromTimestamp(int timestap)
         {
+            //UTC
             DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            return origin.AddSeconds(timestap).ToUniversalTime();
+            return origin.AddSeconds(timestap);
         }
     }
 }

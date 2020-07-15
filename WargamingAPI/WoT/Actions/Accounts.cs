@@ -92,7 +92,15 @@ namespace WargamingAPI.WoT.Actions
 
                 accountInfo.global_rating = 
                     (int)parsed["data"][strAccId]["global_rating"];
-                accountInfo.clan_id = (int)parsed["data"][strAccId]["clan_id"];
+                var clan = parsed["data"][strAccId]["clan_id"];
+                if(clan.Value == null)
+                {
+                    accountInfo.clan_id = null;
+                }
+                else
+                {
+                    accountInfo.clan_id = Convert.ToInt32(clan);
+                }
                 accountInfo.last_battle_time = 
                     Request.ConvertFromTimestamp((int)parsed["data"][strAccId]["last_battle_time"]);
                 accountInfo.logout_at = 

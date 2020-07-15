@@ -19,5 +19,14 @@ namespace WargamingAPI.WoT.Models
         public DateTime logout_at { get; set; }
 
         public DateTime updated_at { get; set; }
+
+        public bool Equals(PublicAccountInfo obj)
+        {
+            if(obj.created_at == created_at && player.Equals((object)obj.player))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

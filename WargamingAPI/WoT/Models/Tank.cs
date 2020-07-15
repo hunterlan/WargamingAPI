@@ -13,5 +13,14 @@ namespace WargamingAPI.WoT.Models
         public int battles { get; set; }
 
         public int wins { get; set; }
+
+        public bool Equals(Tank comparor)
+        {
+            if(comparor.tank_id == tank_id)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

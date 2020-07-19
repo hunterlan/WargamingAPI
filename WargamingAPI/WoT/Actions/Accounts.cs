@@ -37,8 +37,8 @@ namespace WargamingAPI.WoT.Actions
                     {
                         Player player = new Player()
                         {
-                            nickname = parsed.data[0].nickname,
-                            account_id = parsed.data[0].account_id
+                            nickname = parsed.data[i].nickname,
+                            account_id = parsed.data[i].account_id
                         };
                         gotPlayers.Add(player);
                     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using WargamingAPI.WoT.Actions;
-using WargamingAPI.WoT.Models;
+using WargamingAPI.WoT.Models.Accounts;
 
 namespace TestAPI.WoT
 {

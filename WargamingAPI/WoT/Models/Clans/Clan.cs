@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WargamingAPI.WoT.Models
+namespace WargamingAPI.WoT.Models.Clans
 {
     public class Clan
     {

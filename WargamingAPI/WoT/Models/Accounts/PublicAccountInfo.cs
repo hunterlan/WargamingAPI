@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WargamingAPI.WoT.Models
+namespace WargamingAPI.WoT.Models.Accounts
 {
     public class PublicAccountInfo
     {
@@ -22,7 +22,7 @@ namespace WargamingAPI.WoT.Models
 
         public bool Equals(PublicAccountInfo obj)
         {
-            if(obj.created_at == created_at && player.Equals((object)obj.player))
+            if (obj.created_at == created_at && player.Equals((object)obj.player))
             {
                 return true;
             }

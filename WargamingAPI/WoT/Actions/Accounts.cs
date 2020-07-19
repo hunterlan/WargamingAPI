@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using WargamingAPI.WoT.Exceptions;
-using WargamingAPI.WoT.Models;
+using WargamingAPI.WoT.Models.Accounts;
 
 namespace WargamingAPI.WoT.Actions
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WargamingAPI.WoT.Models
+namespace WargamingAPI.WoT.Models.Accounts
 {
     public class Player
     {
@@ -12,7 +12,7 @@ namespace WargamingAPI.WoT.Models
 
         public bool Equals(Player comparor)
         {
-            if(string.Equals(comparor.nickname, nickname) && account_id == comparor.account_id)
+            if (string.Equals(comparor.nickname, nickname) && account_id == comparor.account_id)
             {
                 return true;
             }

@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using WargamingAPI.WoT.Models;
+using WargamingAPI.WoT.Models.Clans;
 
 namespace WargamingAPI.WoT.Actions
 {

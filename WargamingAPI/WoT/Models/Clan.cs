@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WargamingAPI.WoT.Models
 {
-    class Clan
+    public class Clan
     {
         public int members_count { get; set; }
         public string name { get; set; }

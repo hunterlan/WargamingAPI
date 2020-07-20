@@ -8,7 +8,7 @@ namespace WargamingAPI.WoT.Models.Clans
     {
         public string role { get; set; }
         public string role_i18n { get; set; }
-        public int joined_at { get; set; }
+        public DateTime joined_at { get; set; }
         public int account_id { get; set; }
         public string account_name { get; set; }
 

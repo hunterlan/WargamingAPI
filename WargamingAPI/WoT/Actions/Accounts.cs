@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using WargamingAPI.WoT.Exceptions;
 using WargamingAPI.WoT.Models.Accounts;
 
@@ -22,9 +21,9 @@ namespace WargamingAPI.WoT.Actions
             List<string> fields = null, string language = "", int limit = -1, string type = "")
         {
             List<Player> gotPlayers = new List<Player>();
-            string finalUrlRequest = string.Concat(accountLink, typesInqury[0], 
+            string finalUrlRequest = string.Concat(accountLink, typesInqury[0],
                 "application_id=", application_id, "&search=", search);
-            if(fields == null)
+            if (fields == null)
             {
                 string response = Request.GetResponse(finalUrlRequest);
                 dynamic parsed = JsonConvert.DeserializeObject(response);
@@ -33,7 +32,7 @@ namespace WargamingAPI.WoT.Actions
                 if (status == "ok")
                 {
                     int count = parsed.meta.count;
-                    for(int i = 0; i < count; i++)
+                    for (int i = 0; i < count; i++)
                     {
                         Player player = new Player()
                         {
@@ -72,7 +71,7 @@ namespace WargamingAPI.WoT.Actions
             return gotPlayers;
         }
 
-        public PublicAccountInfo GetPPA(string application_id, Player player, string access_token = "", 
+        public PublicAccountInfo GetPPA(string application_id, Player player, string access_token = "",
             string extra = "", List<string> fields = null, string language = "")
         {
             //TO-DO: Do non required fields
@@ -90,10 +89,10 @@ namespace WargamingAPI.WoT.Actions
             {
                 string strAccId = accountInfo.player.account_id.ToString();
 
-                accountInfo.global_rating = 
+                accountInfo.global_rating =
                     (int)parsed["data"][strAccId]["global_rating"];
                 var clan = parsed["data"][strAccId]["clan_id"];
-                if(clan.Value == null)
+                if (clan.Value == null)
                 {
                     accountInfo.clan_id = null;
                 }
@@ -101,9 +100,9 @@ namespace WargamingAPI.WoT.Actions
                 {
                     accountInfo.clan_id = Convert.ToInt32(clan);
                 }
-                accountInfo.last_battle_time = 
+                accountInfo.last_battle_time =
                     Request.ConvertFromTimestamp((int)parsed["data"][strAccId]["last_battle_time"]);
-                accountInfo.logout_at = 
+                accountInfo.logout_at =
                     Request.ConvertFromTimestamp((int)parsed["data"][strAccId]["logout_at"]);
                 accountInfo.created_at =
                     Request.ConvertFromTimestamp((int)parsed["data"][strAccId]["created_at"]);
@@ -175,7 +174,7 @@ namespace WargamingAPI.WoT.Actions
             string response = Request.GetResponse(finalUrlRequest);
             dynamic parsed = JsonConvert.DeserializeObject(response);
             string status = parsed.status;
-            
+
             if (status == "ok")
             {
                 string strAccId = player.account_id.ToString();
@@ -186,5 +185,3 @@ namespace WargamingAPI.WoT.Actions
         }
     }
 }
-
-

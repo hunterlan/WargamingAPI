@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using WargamingAPI.WoT.Models.Clans;
 
 namespace WargamingAPI.WoT.Actions
@@ -28,10 +26,10 @@ namespace WargamingAPI.WoT.Actions
             dynamic parsed = JsonConvert.DeserializeObject(response);
             string status = parsed.status;
 
-            if(status == "ok")
+            if (status == "ok")
             {
                 int count = parsed.meta.count;
-                for(int i = 0; i < count; i++)
+                for (int i = 0; i < count; i++)
                 {
                     Clan clan = new Clan()
                     {
@@ -60,7 +58,7 @@ namespace WargamingAPI.WoT.Actions
             dynamic parsed = JsonConvert.DeserializeObject(response);
             string status = parsed.status;
 
-            if(status == "ok")
+            if (status == "ok")
             {
                 string strClanId = clan.clan_id.ToString();
 
@@ -84,7 +82,7 @@ namespace WargamingAPI.WoT.Actions
                 info.is_clan_disbanded = (bool)parsed["data"][strClanId]["is_clan_disbanded"];
 
                 List<Member> membersClan = new List<Member>();
-                for(int i = 0; i < info.members_count; i++)
+                for (int i = 0; i < info.members_count; i++)
                 {
                     Member member = new Member()
                     {

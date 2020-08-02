@@ -6,12 +6,12 @@ using WargamingAPI.WoT.Models.Accounts;
 
 namespace WargamingAPI.WoT.Actions
 {
-    public class Accounts
+    public class InfoAccounts
     {
         public readonly string accountLink;
         public readonly List<string> typesInqury;
 
-        public Accounts()
+        public InfoAccounts()
         {
             accountLink = "https://api.worldoftanks.ru/wot/account/";
             typesInqury = new List<string>() { "list/?", "info/?", "tanks/?", "achievements/?" };

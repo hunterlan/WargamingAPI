@@ -10,12 +10,12 @@ namespace TestAPI.WoT
     public class AccountTest
     {
         private string apiKey;
-        Accounts accounts;
+        InfoAccounts accounts;
         [SetUp]
         public void Setup()
         {
             apiKey = GetApiKey();
-            accounts = new Accounts();
+            accounts = new InfoAccounts();
         }
 
         public string GetApiKey()

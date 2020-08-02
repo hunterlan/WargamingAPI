@@ -4,12 +4,13 @@ using WargamingAPI.WoT.Models.Clans;
 
 namespace WargamingAPI.WoT.Actions
 {
-    public class Clans
+    public class InfoClans
     {
         public readonly string clanLink;
         public readonly List<string> typesInqury;
+        JsonResult jsonResult;
 
-        public Clans()
+        public InfoClans()
         {
             clanLink = "https://api.worldoftanks.ru/wot/clans/";
             typesInqury = new List<string>() { "list/?", "info/?" };

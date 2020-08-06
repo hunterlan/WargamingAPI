@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using WargamingAPI.WoT.Models.Clans;
 
 namespace WargamingAPI.WoT.Actions
 {
@@ -60,6 +61,35 @@ namespace WargamingAPI.WoT.Actions
             {
                 //TO-DO: Exception to face
             }
+        }
+
+        public List<Rating> GetRatingClans(string application_id, Clan clan)
+        {
+            List<Rating> ratingsOfClan = new List<Rating>();
+            string finalUrlRequest = string.Concat(_clanRatingLink, typesInqury[0],
+               "application_id=", application_id, "&clan_id=", clan.clan_id.ToString());
+
+            string response = Request.GetResponse(finalUrlRequest);
+            dynamic parsed = JsonConvert.DeserializeObject(response);
+            string status = parsed.status;
+
+            if(status == "ok")
+            {
+                GetRankFields(application_id);
+                foreach(string rank_field in _rankFields)
+                {
+                    Rating clanRating = new Rating();
+
+                    clanRating.rank = parsed["data"][clan.clan_id][rank_field]["rank"];
+                    clanRating.rank_delta = parsed["data"][clan.clan_id][rank_field]["rank_delta"];
+                    clanRating.value = parsed["data"][clan.clan_id][rank_field]["value"];
+                    clanRating.name_rating = rank_field;
+
+                    ratingsOfClan.Add(clanRating);
+                }
+            }
+
+            return ratingsOfClan;
         }
     }
 }

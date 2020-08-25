@@ -91,5 +91,22 @@ namespace WargamingAPI.WoT.Actions
 
             return ratingsOfClan;
         }
+
+        //Something strange in this function API. It returns nothing. 
+        public void GetTopClans(string application_id, string rank_filed, int date)
+        {
+            List<Rating> ratingsOfClan = new List<Rating>();
+            string finalUrlRequest = string.Concat(_clanRatingLink, typesInqury[0],
+               "application_id=", application_id, "&rank_field=", rank_filed, "&date=", date);
+
+            string response = Request.GetResponse(finalUrlRequest);
+            dynamic parsed = JsonConvert.DeserializeObject(response);
+            string status = parsed.status;
+
+            if (status == "ok")
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

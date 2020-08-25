@@ -57,6 +57,10 @@ namespace WargamingAPI.WoT.Actions
                     {
                         throw new SearchException("Пустой никнейм");
                     }
+                    else if(error == "INVALID_FIELDS")
+                    {
+
+                    }
                     else
                     {
                         throw new Exception("Something went wrong.");

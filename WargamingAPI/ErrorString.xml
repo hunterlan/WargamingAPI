@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<errors>
+	<error>
+		<name>NOT_ENOUGH_SEARCH_LENGTH</name>
+		<description>Require at least 3 characters</description>
+	</error>
+	<error>
+		<name>INVALID_SEARCH</name>
+		<description>The search is invalid</description>
+	</error>
+	<error>
+		<name>SEARCH_NOT_SPECIFIED</name>
+		<description>Empty search field</description>
+	</error>
+	<error>
+		<name>INVALID_FIELDS</name>
+		<description>Inputed filed isn't correct</description>
+	</error>
+	<error>
+		<name>ACCOUNT_ID_NOT_SPECIFIED</name>
+		<description>Application id haven't been provided</description>
+	</error>
+</errors>

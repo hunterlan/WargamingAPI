@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using WargamingAPI.WoT.Exceptions;
 
 namespace WargamingAPI.WoT.Actions
 {
@@ -32,7 +33,7 @@ namespace WargamingAPI.WoT.Actions
             }
             else
             {
-                //TO-DO: Work with exceptions
+                new CauseException().Cause(parsed.error.message);
             }
 
             return token;

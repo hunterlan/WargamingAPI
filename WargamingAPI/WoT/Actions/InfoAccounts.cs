@@ -44,27 +44,7 @@ namespace WargamingAPI.WoT.Actions
                 }
                 else
                 {
-                    string error = parsed.error.message;
-                    if (error == "NOT_ENOUGH_SEARCH_LENGTH")
-                    {
-                        throw new SearchException("Минимум три символа требуется");
-                    }
-                    else if (error == "INVALID_SEARCH")
-                    {
-                        throw new SearchException("Неверный поиск");
-                    }
-                    else if (error == "SEARCH_NOT_SPECIFIED")
-                    {
-                        throw new SearchException("Пустой никнейм");
-                    }
-                    else if(error == "INVALID_FIELDS")
-                    {
-
-                    }
-                    else
-                    {
-                        throw new Exception("Something went wrong.");
-                    }
+                    new CauseException().Cause((string)parsed.error.message);
                 }
             }
             else
@@ -115,23 +95,7 @@ namespace WargamingAPI.WoT.Actions
             }
             else
             {
-                string error = parsed.error.message;
-                if (error == "NOT_ENOUGH_SEARCH_LENGTH")
-                {
-                    throw new SearchException("Минимум три символа требуется");
-                }
-                else if (error == "INVALID_SEARCH")
-                {
-                    throw new SearchException("Неверный поиск");
-                }
-                else if (error == "SEARCH_NOT_SPECIFIED")
-                {
-                    throw new SearchException("Пустой никнейм");
-                }
-                else
-                {
-                    throw new Exception("Something went wrong.");
-                }
+                new CauseException().Cause(parsed.error.message);
             }
 
             return accountInfo;
@@ -164,6 +128,10 @@ namespace WargamingAPI.WoT.Actions
                     tanks.Add(tank);
                 }
             }
+            else
+            {
+                new CauseException().Cause(parsed.error.message);
+            }
 
             return tanks;
         }
@@ -183,6 +151,10 @@ namespace WargamingAPI.WoT.Actions
             {
                 string strAccId = player.account_id.ToString();
                 playersAchivment = (PlayersAchivment)parsed["data"][strAccId];
+            }
+            else
+            {
+                new CauseException().Cause(parsed.error.message);
             }
 
             return playersAchivment;

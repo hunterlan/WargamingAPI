@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using WargamingAPI.WoT.Exceptions;
 using WargamingAPI.WoT.Models.Clans;
 
 namespace WargamingAPI.WoT.Actions
@@ -36,7 +37,7 @@ namespace WargamingAPI.WoT.Actions
             }
             else
             {
-                //TO-DO: Exception to face
+                new CauseException().Cause(parsed.error.message);
             }
         }
 
@@ -59,7 +60,7 @@ namespace WargamingAPI.WoT.Actions
             }
             else
             {
-                //TO-DO: Exception to face
+                new CauseException().Cause(parsed.error.message);
             }
         }
 
@@ -87,6 +88,10 @@ namespace WargamingAPI.WoT.Actions
 
                     ratingsOfClan.Add(clanRating);
                 }
+            }
+            else
+            {
+                new CauseException().Cause(parsed.error.message);
             }
 
             return ratingsOfClan;

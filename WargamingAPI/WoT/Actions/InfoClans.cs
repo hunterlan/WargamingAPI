@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using WargamingAPI.WoT.Exceptions;
 using WargamingAPI.WoT.Models.Clans;
 
 namespace WargamingAPI.WoT.Actions
@@ -8,7 +10,6 @@ namespace WargamingAPI.WoT.Actions
     {
         public readonly string clanLink;
         public readonly List<string> typesInqury;
-        JsonResult jsonResult;
 
         public InfoClans()
         {
@@ -43,6 +44,10 @@ namespace WargamingAPI.WoT.Actions
                     };
                     clans.Add(clan);
                 }
+            }
+            else
+            {
+                new CauseException().Cause(parsed.error.message);
             }
 
             return clans;
@@ -100,6 +105,10 @@ namespace WargamingAPI.WoT.Actions
                 }
 
                 info.members = membersClan;
+            }
+            else
+            {
+                new CauseException().Cause(parsed.error.message);
             }
 
             return info;

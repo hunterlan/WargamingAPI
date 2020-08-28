@@ -20,4 +20,20 @@
 		<name>ACCOUNT_ID_NOT_SPECIFIED</name>
 		<description>Application id haven't been provided</description>
 	</error>
+	<error>
+		<name>METHOD_DISABLED</name>
+		<description>Function in API was diasbled by Wargaming</description>
+	</error>
+	<error>
+		<name>APPLICATION_IS_BLOCKED</name>
+		<description>Your application ID have been banned by Wargaming</description>
+	</error>
+	<error>
+		<name>INVALID_IP_ADDRESS</name>
+		<description>IP address is not allow for server application</description>
+	</error>
+	<error>
+		<name>SOURCE_NOT_AVAILABLE</name>
+		<description>Data isn't available</description>
+	</error>
 </errors>

@@ -7,6 +7,7 @@ using System.Xml;
 using WargamingAPI.WoT.Actions;
 using WargamingAPI.WoT.Exceptions;
 using WargamingAPI.WoT.Models.Accounts;
+using WargamingAPI.WoT.Models.Clans;
 
 namespace TestAPI.WoT
 {

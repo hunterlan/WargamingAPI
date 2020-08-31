@@ -36,4 +36,12 @@
 		<name>SOURCE_NOT_AVAILABLE</name>
 		<description>Data isn't available</description>
 	</error>
+	<error>
+		<name>ACCOUNT_NOT_IN_CLAN</name>
+		<description>Account is not in clan</description>
+	</error>
+	<error>
+		<name>RESERVE_ACTIVATION_ERROR</name>
+		<description>Account is not in a clan or the wrong reserve is selected</description>
+	</error>
 </errors>

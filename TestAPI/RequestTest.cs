@@ -16,7 +16,7 @@ namespace TestAPI
         {
             int timestamp = 1593301376;
 
-            DateTime expectedTime = new DateTime(2020, 6, 27, 23, 42, 56);
+            DateTime expectedTime = new(2020, 6, 27, 23, 42, 56);
             DateTime resultTime = Request.ConvertFromTimestamp(timestamp);
 
             Assert.AreEqual(expectedTime, resultTime);

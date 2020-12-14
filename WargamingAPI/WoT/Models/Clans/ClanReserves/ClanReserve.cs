@@ -6,16 +6,16 @@ namespace WargamingAPI.WoT.Models.Clans.ClanReserves
 {
     public class ClanReserve
     {
-        public string bonus_type { get; set; }
+        public string BonusType { get; set; }
 
-        public bool disposable { get; set; }
+        public bool Disposable { get; set; }
         
-        public string icon { get; set; }
+        public string Icon { get; set; }
 
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        public string type { get; set; }
+        public string Type { get; set; }
 
-        public InStock in_stock { get; set; }
+        public InStock InStock { get; set; }
     }
 }

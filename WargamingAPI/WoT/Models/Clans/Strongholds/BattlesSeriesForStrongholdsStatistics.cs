@@ -6,10 +6,10 @@ namespace WargamingAPI.WoT.Models.Clans.Strongholds
 {
     public class BattlesSeriesForStrongholdsStatistics
     {
-        public int win_10 { get; set; }
-        public int total_10 { get; set; }
-        public int total_10_in_28d { get; set; }
-        public int win_10_in_28d { get; set; }
-        public int lose_10 { get; set; }
+        public int Win10 { get; set; }
+        public int Total10 { get; set; }
+        public int Total10In28d { get; set; }
+        public int Win10In28d { get; set; }
+        public int Lose10 { get; set; }
     }
 }

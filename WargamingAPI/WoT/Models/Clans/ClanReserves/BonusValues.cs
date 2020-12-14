@@ -6,8 +6,8 @@ namespace WargamingAPI.WoT.Models.Clans.ClanReserves
 {
     public class BonusValues
     {
-        public string battle_type { get; set; }
+        public string BattleType { get; set; }
 
-        public double value { get; set; }
+        public double Value { get; set; }
     }
 }

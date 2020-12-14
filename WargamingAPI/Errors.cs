@@ -6,32 +6,26 @@ using System.Xml.Serialization;
 
 namespace WargamingAPI
 {
-    [XmlType("error")]
-    public class Error
-    {
-        [XmlElement("name")]
-        public string TypeError { get; set; }
-        [XmlElement("description")]
-        public string Description { get; set; }
-    }
-    [XmlRoot("errors")]
-    public class Errors
-    {
-        [XmlElement("error")]
-        public List<Error> errors { get; set; }
-    }
+	[XmlType("error")]
+	public class Error
+	{
+		[XmlElement("name")]
+		public string TypeError { get; set; }
+		[XmlElement("description")]
+		public string Description { get; set; }
+	}
 
-    public class XMLErrors
-    {
-        public Errors errors { get; set; }
-        public void ReadErrors()
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(Errors));
+	public class XMLErrors
+	{
+		[XmlElement("error")]
+		public List<Error> Errors { get; set; }
 
-            using (var reader = File.Open("ErrorString.xml", FileMode.Open))
-            {
-                errors = (Errors)serializer.Deserialize(reader);
-            }
-        }
-    }
+		public void ReadErrors()
+		{
+			XmlSerializer serializer = new(typeof(List<Error>));
+
+			using var reader = File.Open("ErrorString.xml", FileMode.Open);
+			Errors = (List<Error>)serializer.Deserialize(reader);
+		}
+	}
 }

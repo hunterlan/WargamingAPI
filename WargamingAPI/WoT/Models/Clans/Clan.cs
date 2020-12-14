@@ -6,11 +6,11 @@ namespace WargamingAPI.WoT.Models.Clans
 {
     public class Clan
     {
-        public int members_count { get; set; }
-        public string name { get; set; }
-        public string color { get; set; }
-        public int created_at { get; set; }
-        public string tag { get; set; }
-        public int clan_id { get; set; }
+        public int MembersCount { get; set; }
+        public string Name { get; set; }
+        public string Color { get; set; }
+        public int CreatedAt { get; set; }
+        public string Tag { get; set; }
+        public int ClanId { get; set; }
     }
 }

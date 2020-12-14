@@ -19,7 +19,7 @@ namespace WargamingAPI.WoT.Actions
 
         public List<Clan> GetClans(string application_id, string search)
         {
-            List<Clan> clans = new List<Clan>();
+            List<Clan> clans = new();
 
             string finalUrlRequest = string.Concat(clanLink, typesInqury[0],
                 "application_id=", application_id, "&search=", search);
@@ -33,14 +33,14 @@ namespace WargamingAPI.WoT.Actions
                 int count = parsed.meta.count;
                 for (int i = 0; i < count; i++)
                 {
-                    Clan clan = new Clan()
+                    Clan clan = new()
                     {
-                        clan_id = parsed.data[i].clan_id,
-                        name = parsed.data[i].name,
-                        tag = parsed.data[i].tag,
-                        members_count = parsed.data[i].members_count,
-                        color = parsed.data[i].color,
-                        created_at = parsed.data[i].created_at
+                        ClanId = parsed.data[i].clan_id,
+                        Name = parsed.data[i].name,
+                        Tag = parsed.data[i].tag,
+                        MembersCount = parsed.data[i].members_count,
+                        Color = parsed.data[i].color,
+                        CreatedAt = parsed.data[i].created_at
                     };
                     clans.Add(clan);
                 }
@@ -55,10 +55,10 @@ namespace WargamingAPI.WoT.Actions
 
         public ClanInfo GetClanInfo(string application_id, Clan clan)
         {
-            ClanInfo info = new ClanInfo();
+            ClanInfo info = new();
 
             string finalUrlRequest = string.Concat(clanLink, typesInqury[1],
-               "application_id=", application_id, "&clan_id=", clan.clan_id);
+               "application_id=", application_id, "&clan_id=", clan.ClanId);
 
             string response = Request.GetResponse(finalUrlRequest);
             dynamic parsed = JsonConvert.DeserializeObject(response);
@@ -66,45 +66,45 @@ namespace WargamingAPI.WoT.Actions
 
             if (status == "ok")
             {
-                string strClanId = clan.clan_id.ToString();
+                string strClanId = clan.ClanId.ToString();
 
-                info.leader_id = (int)parsed["data"][strClanId]["leader_id"];
-                info.leader_name = parsed["data"][strClanId]["leader_name"];
-                info.color = parsed["data"][strClanId]["color"];
-                info.updated_at = Request.ConvertFromTimestamp((int)parsed["data"][strClanId]["updated_at"]);
-                info.tag = parsed["data"][strClanId]["tag"];
-                info.name = parsed["data"][strClanId]["name"];
-                info.motto = parsed["data"][strClanId]["motto"];
-                info.creator_name = parsed["data"][strClanId]["creator_name"];
-                info.creator_id = info.leader_id;
-                info.created_at = Request.ConvertFromTimestamp((int)parsed["data"][strClanId]["created_at"]);
-                info.members_count = (int)parsed["data"][strClanId]["members_count"];
-                info.description_html = parsed["data"][strClanId]["description_html"];
-                info.description = parsed["data"][strClanId]["description"];
-                info.accepts_join_requests = (bool)parsed["data"][strClanId]["accepts_join_requests"];
-                info.renamed_at = Request.ConvertFromTimestamp((int)parsed["data"][strClanId]["renamed_at"]);
-                info.old_tag = parsed["data"][strClanId]["old_tag"];
-                info.old_name = parsed["data"][strClanId]["old_name"];
-                info.is_clan_disbanded = (bool)parsed["data"][strClanId]["is_clan_disbanded"];
+                info.LeaderId = (int)parsed["data"][strClanId]["leader_id"];
+                info.LeaderName = parsed["data"][strClanId]["leader_name"];
+                info.Color = parsed["data"][strClanId]["color"];
+                info.UpdatedAt = Request.ConvertFromTimestamp((int)parsed["data"][strClanId]["updated_at"]);
+                info.Tag = parsed["data"][strClanId]["tag"];
+                info.Name = parsed["data"][strClanId]["name"];
+                info.Motto = parsed["data"][strClanId]["motto"];
+                info.CreatorName = parsed["data"][strClanId]["creator_name"];
+                info.CreatorId = info.LeaderId;
+                info.CreatedAt = Request.ConvertFromTimestamp((int)parsed["data"][strClanId]["created_at"]);
+                info.MembersCount = (int)parsed["data"][strClanId]["members_count"];
+                info.DescriptionHtml = parsed["data"][strClanId]["description_html"];
+                info.Description = parsed["data"][strClanId]["description"];
+                info.AcceptsJoinRequests = (bool)parsed["data"][strClanId]["accepts_join_requests"];
+                info.RenamedAt = Request.ConvertFromTimestamp((int)parsed["data"][strClanId]["renamed_at"]);
+                info.OldTag = parsed["data"][strClanId]["old_tag"];
+                info.OldName = parsed["data"][strClanId]["old_name"];
+                info.IsClanDisbanded = (bool)parsed["data"][strClanId]["is_clan_disbanded"];
 
-                List<Member> membersClan = new List<Member>();
-                for (int i = 0; i < info.members_count; i++)
+                List<Member> membersClan = new();
+                for (int i = 0; i < info.MembersCount; i++)
                 {
-                    Member member = new Member()
+                    Member member = new()
                     {
-                        role = parsed["data"][strClanId]["leader_id"]["members"][i]["role"],
-                        role_i18n = parsed["data"][strClanId]["leader_id"]["members"][i]["role_i18n"],
-                        joined_at =
+                        Role = parsed["data"][strClanId]["leader_id"]["members"][i]["role"],
+                        Role_i18n = parsed["data"][strClanId]["leader_id"]["members"][i]["role_i18n"],
+                        JoinedAt =
                         Request.ConvertFromTimestamp
                         ((int)parsed["data"][strClanId]["leader_id"]["members"][i]["joined_at"]),
-                        account_id = (int)parsed["data"][strClanId]["leader_id"]["members"][i]["account_id"],
-                        account_name = parsed["data"][strClanId]["leader_id"]["members"][i]["account_name"]
+                        AccountId = (int)parsed["data"][strClanId]["leader_id"]["members"][i]["account_id"],
+                        AccountName = parsed["data"][strClanId]["leader_id"]["members"][i]["account_name"]
                     };
 
                     membersClan.Add(member);
                 }
 
-                info.members = membersClan;
+                info.Members = membersClan;
             }
             else
             {

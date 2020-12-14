@@ -6,23 +6,23 @@ namespace WargamingAPI.WoT.Models.Accounts
 {
     public class FragsAchivments
     {
-        public int crucialShotMedal { get; set; }
-        public int infiltratorMedal { get; set; }
-        public int sentinelMedal { get; set; }
-        public int prematureDetonationMedal { get; set; }
-        public int fightingReconnaissanceMedal { get; set; }
-        public int fireAndSteelMedal { get; set; }
-        public int rangerMedal { get; set; }
-        public int reliableComrade { get; set; }
-        public int wolfAmongSheepMedal { get; set; }
-        public int beasthunter { get; set; }
-        public int bruteForceMedal { get; set; }
-        public int guerrillaMedal { get; set; }
-        public int promisingFighterMedal { get; set; }
-        public int pyromaniacMedal { get; set; }
-        public int geniusForWarMedal { get; set; }
-        public int heavyFireMedal { get; set; }
-        public int sinai { get; set; }
-        public int pattonValley { get; set; }
+        public int CrucialShotMedal { get; set; }
+        public int InfiltratorMedal { get; set; }
+        public int SentinelMedal { get; set; }
+        public int PrematureDetonationMedal { get; set; }
+        public int FightingReconnaissanceMedal { get; set; }
+        public int FireAndSteelMedal { get; set; }
+        public int RangerMedal { get; set; }
+        public int ReliableComrade { get; set; }
+        public int WolfAmongSheepMedal { get; set; }
+        public int Beasthunter { get; set; }
+        public int BruteForceMedal { get; set; }
+        public int GuerrillaMedal { get; set; }
+        public int PromisingFighterMedal { get; set; }
+        public int PyromaniacMedal { get; set; }
+        public int GeniusForWarMedal { get; set; }
+        public int HeavyFireMedal { get; set; }
+        public int Sinai { get; set; }
+        public int PattonValley { get; set; }
     }
 }

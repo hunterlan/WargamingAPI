@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WargamingAPI.WoT.Models.Accounts
+﻿namespace WargamingAPI.WoT.Models.Accounts
 {
-    public class PlayersAchivment
+    public class PlayersAchievements
     {
-        Achievements achievements { get; set; }
+        public Achievements Achievements { get; set; }
 
-        FragsAchivments fragsAchivments { get; set; }
+        public FragsAchivments FragsAchivments { get; set; }
 
-        MaxSeries maxSeries { get; set; }
+        public MaxSeries MaxSeries { get; set; }
     }
 }

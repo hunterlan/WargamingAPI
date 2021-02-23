@@ -6,11 +6,11 @@ namespace WargamingAPI.WoT.Models.Clans.Strongholds
 {
     public class BuildingSlot
     {
-        public string direction { get; set; }
-        public string arena_id { get; set; }
-        public string reserve_title { get; set; }
-        public int? building_level { get; set; }
-        public string position { get; set; }
-        public string building_title { get; set; }
+        public string Direction { get; set; }
+        public string ArenaId { get; set; }
+        public string ReserveTitle { get; set; }
+        public int? BuildingLevel { get; set; }
+        public string Position { get; set; }
+        public string BuildingTitle { get; set; }
     }
 }

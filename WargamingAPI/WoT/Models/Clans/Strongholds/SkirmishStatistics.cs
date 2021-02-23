@@ -6,23 +6,23 @@ namespace WargamingAPI.WoT.Models.Clans.Strongholds
 {
     public class SkirmishStatistics
     {
-        public int win_10 { get; set; }
-        public int total_6 { get; set; }
-        public int total_10 { get; set; }
-        public int win_6 { get; set; }
-        public int total_10_in_28d { get; set; }
-        public int win_8_in_28d { get; set; }
-        public int lose_8 { get; set; }
-        public int lose_6 { get; set; }
-        public int total_8 { get; set; }
-        public int last_time_6 { get; set; }
-        public int last_time_10 { get; set; }
-        public int lose_10 { get; set; }
-        public int total_6_in_28d { get; set; }
-        public int total_8_in_28d { get; set; }
-        public int win_6_in_28d { get; set; }
-        public int win_10_in_28d { get; set; }
-        public int last_time_8 { get; set; }
-        public int win_8 { get; set; }
+        public int Win10 { get; set; }
+        public int Total6 { get; set; }
+        public int Total10 { get; set; }
+        public int Win6 { get; set; }
+        public int Total10In28d { get; set; }
+        public int Win8In28d { get; set; }
+        public int Lose8 { get; set; }
+        public int Lose6 { get; set; }
+        public int Total8 { get; set; }
+        public int LastTime6 { get; set; }
+        public int LastTime10 { get; set; }
+        public int Lose10 { get; set; }
+        public int Total6In28d { get; set; }
+        public int Total8In28d { get; set; }
+        public int Win6In28d { get; set; }
+        public int Win10In28d { get; set; }
+        public int LastTime8 { get; set; }
+        public int Win8 { get; set; }
     }
 }

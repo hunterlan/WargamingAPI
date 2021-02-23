@@ -4,19 +4,12 @@ using System.Text;
 
 namespace WargamingAPI.WoT.Models.Accounts
 {
-    public class Player
-    {
-        public int account_id { get; set; }
+	public class Player
+	{
+		public int AccountId { get; set; }
 
-        public string nickname { get; set; }
+		public string Nickname { get; set; }
 
-        public bool Equals(Player comparor)
-        {
-            if (string.Equals(comparor.nickname, nickname) && account_id == comparor.account_id)
-            {
-                return true;
-            }
-            return false;
-        }
-    }
+		public bool Equals(Player comparor) => comparor.Nickname == Nickname && AccountId == comparor.AccountId;
+	}
 }

@@ -1,7 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
-using System.IO;
-using System.Xml;
+using System.Linq;
 using WargamingAPI.WoT.Actions;
 using WargamingAPI.WoT.Models.Accounts;
 
@@ -9,53 +8,29 @@ namespace TestAPI.WoT
 {
 	public class AccountTest
 	{
-		private string apiKey;
-		InfoAccounts accounts;
+		private string _apiKey;
+		private InfoAccounts _accounts;
+		private const string NicknamePlayer = "Hunterlan2000";
+		private const int ExpectedIdPlayer = 30373360;
 		[SetUp]
 		public void Setup()
 		{
-			apiKey = GetApiKey();
-			accounts = new InfoAccounts();
-		}
-
-		public static string GetApiKey()
-		{
-			XmlDocument xDoc = new();
-			string apiKey = "";
-
-			string path = "";
-
-			for (int i = 0; i < 3; i++)
-			{
-				path = string.Concat(path, "..", Path.DirectorySeparatorChar);
-			}
-			path = string.Concat(path, "data.xml");
-			xDoc.Load(path);
-			XmlElement xRoot = xDoc.DocumentElement;
-			XmlNodeList nodes = xRoot.SelectNodes("/wot/apiKey");
-			foreach (XmlElement node in nodes)
-			{
-				apiKey = node.InnerText;
-			}
-
-			return apiKey;
+			_apiKey = Helper.GetApiKey();
+			_accounts = new InfoAccounts();
 		}
 
 		[Test]
 		public void TestGettingAccessToken()
 		{
-			string nicknamePlayer = "Hunterlan2000";
-			int expectedIdPlayer = 30373360;
-
-			List<Player> players = accounts.GetPlayers(apiKey, nicknamePlayer, null);
+			List<Player> players = _accounts.GetPlayers(_apiKey, NicknamePlayer, null);
 			if (players.Count > 1)
 			{
 				Assert.Fail("Count of players more than one!");
 			}
-			else if (players[0].AccountId != expectedIdPlayer || !string.Equals(players[0].Nickname, nicknamePlayer))
+			else if (players[0].AccountId != ExpectedIdPlayer || !string.Equals(players[0].Nickname, NicknamePlayer))
 			{
-				string message = string.Concat("Wrong data.\nExpected player: ", nicknamePlayer,
-					" ", expectedIdPlayer, "\nReal player: ", players[0].Nickname, " ",
+				string message = string.Concat("Wrong data.\nExpected player: ", NicknamePlayer,
+					" ", ExpectedIdPlayer, "\nReal player: ", players[0].Nickname, " ",
 					players[0].AccountId);
 				Assert.Fail(message);
 			}
@@ -68,33 +43,33 @@ namespace TestAPI.WoT
 		[Test]
 		public void TestGettingPPA()
 		{
-			Player player = new() { AccountId = 30373360, Nickname = "Hunterlan2000" };
+			Player player = new() { AccountId = ExpectedIdPlayer, Nickname = NicknamePlayer };
 			PublicAccountInfo expectedInfo = new()
 			{
 				Player = player,
 				CreatedAt = new System.DateTime(2014, 6, 1, 18, 24, 56)
 			};
 
-			PublicAccountInfo realInfo = accounts.GetPPA(apiKey, player);
-			Assert.IsTrue(expectedInfo.Equals(realInfo));
+			var realInfo = _accounts.GetPPA(_apiKey, player);
+			Assert.IsTrue(realInfo.Player.AccountId == expectedInfo.Player.AccountId &&
+			              realInfo.CreatedAt == expectedInfo.CreatedAt);
 		}
 
 		[Test]
 		public void TestGettingPlayersTank()
 		{
-			Player player = new() { AccountId = 30373360, Nickname = "Hunterlan2000" };
+			Player player = new() { AccountId = ExpectedIdPlayer, Nickname = NicknamePlayer };
 			Tank expectedTank = new() { TankId = 11777 };
-
-			List<Tank> tanks = accounts.GetPlayersTank(apiKey, player);
-			foreach(Tank tank in tanks)
+			var tanks = _accounts.GetPlayersTank(_apiKey, player);
+			
+			if (tanks.Any(tank => tank.TankId == expectedTank.TankId))
 			{
-				if(tank.TankId == expectedTank.TankId)
-				{
-					Assert.Pass();
-				}
+				Assert.Pass();
 			}
-
-			Assert.Fail();
+			else
+			{
+				Assert.Fail("Tank wasn't found");
+			}
 		}
 	}
 }

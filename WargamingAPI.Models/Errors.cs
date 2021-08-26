@@ -15,6 +15,7 @@ namespace WargamingAPI
 		public string Description { get; set; }
 	}
 
+	[XmlRoot(ElementName="errors")]
 	public class XMLErrors
 	{
 		[XmlElement("error")]
@@ -22,7 +23,7 @@ namespace WargamingAPI
 
 		public void ReadErrors()
 		{
-			XmlSerializer serializer = new(typeof(List<Error>));
+			XmlSerializer serializer = new(typeof(List<Error>), new XmlRootAttribute("errors"));
 
 			using var reader = File.Open("ErrorString.xml", FileMode.Open);
 			Errors = (List<Error>)serializer.Deserialize(reader);

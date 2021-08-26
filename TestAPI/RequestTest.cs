@@ -1,11 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Xml;
 using WargamingAPI;
-using WargamingAPI.WoT.Actions;
-using WargamingAPI.WoT.Models;
 
 namespace TestAPI
 {

@@ -8,20 +8,20 @@ namespace WargamingAPI.WoT.Actions
 {
 	public class InfoAccounts
 	{
-		public readonly string accountLink;
-		public readonly List<string> typesInqury;
+		private readonly string _accountLink;
+		private readonly List<string> _typesInqury;
 
 		public InfoAccounts()
 		{
-			accountLink = "https://api.worldoftanks.ru/wot/account/";
-			typesInqury = new List<string>() { "list/?", "info/?", "tanks/?", "achievements/?" };
+			_accountLink = "https://api.worldoftanks.ru/wot/account/";
+			_typesInqury = new List<string>() { "list/?", "info/?", "tanks/?", "achievements/?" };
 		}
 
-		public List<Player> GetPlayers(string application_id, string search, List<string> fields)
+		public List<Player> GetPlayers(string applicationId, string search, List<string> fields)
 		{
 			List<Player> gotPlayers = new();
-			string finalUrlRequest = string.Concat(accountLink, typesInqury[0],
-				"application_id=", application_id, "&search=", search);
+			string finalUrlRequest = string.Concat(_accountLink, _typesInqury[0],
+				"application_id=", applicationId, "&search=", search);
 			if (fields is null)
 			{
 				string response = Utils.GetResponse(finalUrlRequest);
@@ -55,13 +55,13 @@ namespace WargamingAPI.WoT.Actions
 			return gotPlayers;
 		}
 
-		public PublicAccountInfo GetPPA(string application_id, Player player)
+		public PublicAccountInfo GetPPA(string applicationId, Player player)
 		{
 			//TO-DO: Do non required fields
 			PublicAccountInfo accountInfo = new() {	Player = player };
 
-			string finalUrlRequest = string.Concat(accountLink, typesInqury[1],
-				"application_id=", application_id, "&account_id=", player.AccountId);
+			string finalUrlRequest = string.Concat(_accountLink, _typesInqury[1],
+				"application_id=", applicationId, "&account_id=", player.AccountId);
 
 			string response = Utils.GetResponse(finalUrlRequest);
 			dynamic parsed = JsonConvert.DeserializeObject(response);
@@ -99,12 +99,12 @@ namespace WargamingAPI.WoT.Actions
 			return accountInfo;
 		}
 
-		public List<Tank> GetPlayersTank(string application_id, Player player)
+		public List<Tank> GetPlayersTank(string applicationId, Player player)
 		{
 			List<Tank> tanks = new();
 
-			string finalUrlRequest = string.Concat(accountLink, typesInqury[2],
-				"application_id=", application_id, "&account_id=", player.AccountId);
+			string finalUrlRequest = string.Concat(_accountLink, _typesInqury[2],
+				"application_id=", applicationId, "&account_id=", player.AccountId);
 
 			string response = Utils.GetResponse(finalUrlRequest);
 			dynamic parsed = JsonConvert.DeserializeObject(response);
@@ -135,12 +135,12 @@ namespace WargamingAPI.WoT.Actions
 			return tanks;
 		}
 
-		public PlayersAchievements GetPlayersAchivment(string application_id, Player player)
+		public PlayersAchievements GetPlayersAchievement(string applicationId, Player player)
 		{
 			PlayersAchievements playersAchievements = new();
 
-			string finalUrlRequest = string.Concat(accountLink, typesInqury[3],
-				"application_id=", application_id, "&account_id=", player.AccountId);
+			string finalUrlRequest = string.Concat(_accountLink, _typesInqury[3],
+				"application_id=", applicationId, "&account_id=", player.AccountId);
 
 			string response = Utils.GetResponse(finalUrlRequest);
 			dynamic parsed = JsonConvert.DeserializeObject(response);

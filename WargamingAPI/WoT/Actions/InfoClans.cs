@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using WargamingAPI.Models.Clans;
 using WargamingAPI.WoT.Exceptions;
 using WargamingAPI.WoT.Models.Clans;
 
@@ -17,12 +18,12 @@ namespace WargamingAPI.WoT.Actions
             typesInqury = new List<string>() { "list/?", "info/?" };
         }
 
-        public List<Clan> GetClans(string application_id, string search)
+        public List<Clan> GetClans(string applicationId, string search)
         {
             List<Clan> clans = new();
 
             string finalUrlRequest = string.Concat(clanLink, typesInqury[0],
-                "application_id=", application_id, "&search=", search);
+                "application_id=", applicationId, "&search=", search);
 
             string response = Utils.GetResponse(finalUrlRequest);
             dynamic parsed = JsonConvert.DeserializeObject(response);

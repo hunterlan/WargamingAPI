@@ -123,12 +123,12 @@ namespace WargamingAPI.WoT.Actions
 		/// Method will return top clans for specified field.
 		/// Work in progress.
 		/// </summary>
-		public void GetTopClans(string application_id, string rank_filed, int date)
+		public void GetTopClans(string applicationId, string rankFiled, int date)
 		{
 			//Something strange in this function API. It returns nothing. 
 			List<Rating> ratingsOfClan = new();
 			string finalUrlRequest = string.Concat(_clanRatingLink, _requestTypes[0],
-			   "application_id=", application_id, "&rank_field=", rank_filed, "&date=", date);
+			   "application_id=", applicationId, "&rank_field=", rankFiled, "&date=", date);
 
 			string response = Utils.GetResponse(finalUrlRequest);
 			dynamic parsed = JsonConvert.DeserializeObject(response);

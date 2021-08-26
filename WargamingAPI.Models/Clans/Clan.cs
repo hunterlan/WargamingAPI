@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WargamingAPI.WoT.Models.Clans
+﻿namespace WargamingAPI.Models.Clans
 {
     public class Clan
     {

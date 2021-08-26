@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using WargamingAPI.Models.Clans;
 using WargamingAPI.WoT.Models.Clans;
 using WargamingAPI.WoT.Models.Clans.ClanReserves;
 using WargamingAPI.WoT.Models.Clans.Strongholds;

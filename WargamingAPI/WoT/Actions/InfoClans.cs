@@ -9,20 +9,27 @@ namespace WargamingAPI.WoT.Actions
 {
     public class InfoClans
     {
-        public readonly string clanLink;
-        public readonly List<string> typesInqury;
+        private readonly string _clanLink;
+        private readonly List<string> _typesInqury;
 
         public InfoClans()
         {
-            clanLink = "https://api.worldoftanks.ru/wot/clans/";
-            typesInqury = new List<string>() { "list/?", "info/?" };
+            _clanLink = "https://api.worldoftanks.ru/wot/clans/";
+            _typesInqury = new List<string>() { "list/?", "info/?" };
         }
+        
+        /// <summary>
+        /// Method searches through clans and sorts them in a specified order.
+        /// </summary>
+        /// <param name="applicationId">Application key</param>
+        /// <param name="search">Part of name or tag for clan search. Minimum 2 characters</param>
+        /// <returns>List of <see cref="Clan"/>. Doesn't contain emblems. </returns>
 
         public List<Clan> GetClans(string applicationId, string search)
         {
             List<Clan> clans = new();
 
-            string finalUrlRequest = string.Concat(clanLink, typesInqury[0],
+            string finalUrlRequest = string.Concat(_clanLink, _typesInqury[0],
                 "application_id=", applicationId, "&search=", search);
 
             string response = Utils.GetResponse(finalUrlRequest);
@@ -54,12 +61,19 @@ namespace WargamingAPI.WoT.Actions
             return clans;
         }
 
-        public ClanInfo GetClanInfo(string application_id, Clan clan)
+        /// <summary>
+        /// Method returns detailed clan information.
+        /// </summary>
+        /// <param name="applicationId"></param>
+        /// <param name="clan">Specified <see cref="Clan"/>, for getting rating. To get it, see
+        /// <see cref="InfoClans.GetClans"/></param>
+        /// <returns>Clan's detail, specified in class <see cref="ClanInfo"/></returns>
+        public ClanInfo GetClanDetails(string applicationId, Clan clan)
         {
             ClanInfo info = new();
 
-            string finalUrlRequest = string.Concat(clanLink, typesInqury[1],
-               "application_id=", application_id, "&clan_id=", clan.ClanId);
+            string finalUrlRequest = string.Concat(_clanLink, _typesInqury[1],
+               "application_id=", applicationId, "&clan_id=", clan.ClanId);
 
             string response = Utils.GetResponse(finalUrlRequest);
             dynamic parsed = JsonConvert.DeserializeObject(response);

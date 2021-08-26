@@ -4,7 +4,7 @@
     {
         public Achievements Achievements { get; set; }
 
-        public FragsAchivments FragsAchivments { get; set; }
+        public FragsAchivments FragsAchievements { get; set; }
 
         public MaxSeries MaxSeries { get; set; }
     }

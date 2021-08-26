@@ -17,6 +17,14 @@ namespace WargamingAPI.WoT.Actions
 			_typesInqury = new List<string>() { "list/?", "info/?", "tanks/?", "achievements/?" };
 		}
 
+		/// <summary>
+		/// Method returns partial list of players.
+		/// The list is filtered by initial characters of user name and sorted alphabetically.
+		/// </summary>
+		/// <param name="applicationId">Application key</param>
+		/// <param name="search">Player name search string</param>
+		/// <param name="fields">Non required fields</param>
+		/// <returns>List of <see cref="Player"/></returns>
 		public List<Player> GetPlayers(string applicationId, string search, List<string> fields)
 		{
 			List<Player> gotPlayers = new();
@@ -55,6 +63,12 @@ namespace WargamingAPI.WoT.Actions
 			return gotPlayers;
 		}
 
+		/// <summary>
+		/// Method returns player details.
+		/// </summary>
+		/// <param name="applicationId">Application key</param>
+		/// <param name="player">Specified <see cref="Player"/>. To get it, see <see cref="GetPlayers"/></param>
+		/// <returns>Details information about player. Fields specified in <see cref="PublicAccountInfo"/></returns>
 		public PublicAccountInfo GetPPA(string applicationId, Player player)
 		{
 			//TO-DO: Do non required fields
@@ -99,6 +113,12 @@ namespace WargamingAPI.WoT.Actions
 			return accountInfo;
 		}
 
+		/// <summary>
+		/// Method returns details on player's vehicles.
+		/// </summary>
+		/// <param name="applicationId">Application key</param>
+		/// <param name="player">Specified <see cref="Player"/>. To get it, see <see cref="GetPlayers"/></param>
+		/// <returns>List of player's <see cref="Tank"/></returns>
 		public List<Tank> GetPlayersTank(string applicationId, Player player)
 		{
 			List<Tank> tanks = new();
@@ -135,6 +155,12 @@ namespace WargamingAPI.WoT.Actions
 			return tanks;
 		}
 
+		/// <summary>
+		/// Method returns player's achievement details.
+		/// </summary>
+		/// <param name="applicationId">Application key</param>
+		/// <param name="player">Specified <see cref="Player"/>. To get it, see <see cref="GetPlayers"/></param>
+		/// <returns>Series, frags and achievements, specified in class <see cref="PlayersAchievements"/></returns>
 		public PlayersAchievements GetPlayersAchievement(string applicationId, Player player)
 		{
 			PlayersAchievements playersAchievements = new();

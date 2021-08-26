@@ -23,7 +23,7 @@ namespace WargamingAPI.WoT.Actions
             string finalUrlRequest = string.Concat(authLink, typesInqury[0],
                 "application_id=", application_id);
 
-            string response = Request.GetResponse(finalUrlRequest);
+            string response = Utils.GetResponse(finalUrlRequest);
             dynamic parsed = JsonConvert.DeserializeObject(response);
             string status = parsed.status;
 
@@ -44,7 +44,7 @@ namespace WargamingAPI.WoT.Actions
             string finalUrlRequest = string.Concat(authLink, typesInqury[1],
                 "application_id=", application_id, "&access_token=", access_token);
 
-            string response = Request.GetResponse(finalUrlRequest);
+            string response = Utils.GetResponse(finalUrlRequest);
             dynamic parsed = JsonConvert.DeserializeObject(response);
             string status = parsed.status;
 
@@ -63,7 +63,7 @@ namespace WargamingAPI.WoT.Actions
             string finalUrlRequest = string.Concat(authLink, typesInqury[2],
                 "application_id=", application_id, "&access_token=", access_token);
 
-            Request.GetResponse(finalUrlRequest);
+            Utils.GetResponse(finalUrlRequest);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace WargamingAPI.WoT.Actions
 		{
 			string finalUrlRequest = string.Concat(strongholdsLink, typesInqury[0], "application_id=", application_id, "&clan_id=", clan.ClanId);
 
-			string response = Request.GetResponse(finalUrlRequest);
+			string response = Utils.GetResponse(finalUrlRequest);
 			string innerJson = JObject.Parse(response)["data"][clan.ClanId.ToString()].ToString();
 			return JsonConvert.DeserializeObject<Stronghold>(innerJson);
 		}
@@ -35,7 +35,7 @@ namespace WargamingAPI.WoT.Actions
 			string finalUrlRequest = string.Concat(strongholdsLink, typesInqury[1],
 				"application_id=", application_id, "&access_token=", access_token);
 
-			string response = Request.GetResponse(finalUrlRequest);
+			string response = Utils.GetResponse(finalUrlRequest);
 			string innerJson = JObject.Parse(response)["data"].ToString();
 			return JsonConvert.DeserializeObject<ClanReserve>(innerJson);
 		}

@@ -27,7 +27,7 @@ namespace WargamingAPI.WoT.Actions
 			string finalUrlRequest = string.Concat(_clanRatingLink, typesInqury[0],
 				"application_id=", application_id);
 
-			string response = Request.GetResponse(finalUrlRequest);
+			string response = Utils.GetResponse(finalUrlRequest);
 			dynamic parsed = JsonConvert.DeserializeObject(response);
 			string status = parsed.status;
 
@@ -50,7 +50,7 @@ namespace WargamingAPI.WoT.Actions
 				finalUrlRequest = string.Concat(finalUrlRequest, "&limit=", limit.ToString());
 			}
 
-			string response = Request.GetResponse(finalUrlRequest);
+			string response = Utils.GetResponse(finalUrlRequest);
 			dynamic parsed = JsonConvert.DeserializeObject(response);
 			string status = parsed.status;
 
@@ -70,7 +70,7 @@ namespace WargamingAPI.WoT.Actions
 			string finalUrlRequest = string.Concat(_clanRatingLink, typesInqury[0],
 			   "application_id=", application_id, "&clan_id=", clan.ClanId.ToString());
 
-			string response = Request.GetResponse(finalUrlRequest);
+			string response = Utils.GetResponse(finalUrlRequest);
 			dynamic parsed = JsonConvert.DeserializeObject(response);
 			string status = parsed.status;
 
@@ -105,7 +105,7 @@ namespace WargamingAPI.WoT.Actions
 			string finalUrlRequest = string.Concat(_clanRatingLink, typesInqury[0],
 			   "application_id=", application_id, "&rank_field=", rank_filed, "&date=", date);
 
-			string response = Request.GetResponse(finalUrlRequest);
+			string response = Utils.GetResponse(finalUrlRequest);
 			dynamic parsed = JsonConvert.DeserializeObject(response);
 			string status = parsed.status;
 

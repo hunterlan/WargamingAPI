@@ -24,7 +24,7 @@ namespace WargamingAPI.WoT.Actions
 				"application_id=", application_id, "&search=", search);
 			if (fields is null)
 			{
-				string response = Request.GetResponse(finalUrlRequest);
+				string response = Utils.GetResponse(finalUrlRequest);
 				dynamic parsed = JsonConvert.DeserializeObject(response);
 				string status = parsed.status;
 
@@ -63,7 +63,7 @@ namespace WargamingAPI.WoT.Actions
 			string finalUrlRequest = string.Concat(accountLink, typesInqury[1],
 				"application_id=", application_id, "&account_id=", player.AccountId);
 
-			string response = Request.GetResponse(finalUrlRequest);
+			string response = Utils.GetResponse(finalUrlRequest);
 			dynamic parsed = JsonConvert.DeserializeObject(response);
 			string status = parsed.status;
 
@@ -83,13 +83,13 @@ namespace WargamingAPI.WoT.Actions
 					accountInfo.ClanId = Convert.ToInt32(clan);
 				}
 				accountInfo.LastBattleTime =
-					Request.ConvertFromTimestamp((int)parsed["data"][strAccId]["last_battle_time"]);
+					Utils.ConvertFromTimestamp((int)parsed["data"][strAccId]["last_battle_time"]);
 				accountInfo.LogoutAt =
-					Request.ConvertFromTimestamp((int)parsed["data"][strAccId]["logout_at"]);
+					Utils.ConvertFromTimestamp((int)parsed["data"][strAccId]["logout_at"]);
 				accountInfo.CreatedAt =
-					Request.ConvertFromTimestamp((int)parsed["data"][strAccId]["created_at"]);
+					Utils.ConvertFromTimestamp((int)parsed["data"][strAccId]["created_at"]);
 				accountInfo.UpdatedAt =
-					Request.ConvertFromTimestamp((int)parsed["data"][strAccId]["updated_at"]);
+					Utils.ConvertFromTimestamp((int)parsed["data"][strAccId]["updated_at"]);
 			}
 			else
 			{
@@ -106,7 +106,7 @@ namespace WargamingAPI.WoT.Actions
 			string finalUrlRequest = string.Concat(accountLink, typesInqury[2],
 				"application_id=", application_id, "&account_id=", player.AccountId);
 
-			string response = Request.GetResponse(finalUrlRequest);
+			string response = Utils.GetResponse(finalUrlRequest);
 			dynamic parsed = JsonConvert.DeserializeObject(response);
 			string status = parsed.status;
 
@@ -142,7 +142,7 @@ namespace WargamingAPI.WoT.Actions
 			string finalUrlRequest = string.Concat(accountLink, typesInqury[3],
 				"application_id=", application_id, "&account_id=", player.AccountId);
 
-			string response = Request.GetResponse(finalUrlRequest);
+			string response = Utils.GetResponse(finalUrlRequest);
 			dynamic parsed = JsonConvert.DeserializeObject(response);
 			string status = parsed.status;
 

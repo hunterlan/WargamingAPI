@@ -4,7 +4,7 @@ using System.Net;
 
 namespace WargamingAPI
 {
-	public class Request
+	public class Utils
 	{
 		public static string GetResponse(string urlRequest)
 		{

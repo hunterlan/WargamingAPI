@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WargamingAPI", "WargamingAP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAPI", "TestAPI\TestAPI.csproj", "{73CC261A-D490-40D7-A8C1-ABF745919675}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{F141B465-B727-4A67-8837-9442EE7E5FE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WargamingAPI.Models", "WargamingAPI.Models\WargamingAPI.Models.csproj", "{9414C58B-959E-4EFF-9D34-61A21BE96462}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,11 +25,19 @@ Global
 		{73CC261A-D490-40D7-A8C1-ABF745919675}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73CC261A-D490-40D7-A8C1-ABF745919675}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73CC261A-D490-40D7-A8C1-ABF745919675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9414C58B-959E-4EFF-9D34-61A21BE96462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9414C58B-959E-4EFF-9D34-61A21BE96462}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9414C58B-959E-4EFF-9D34-61A21BE96462}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9414C58B-959E-4EFF-9D34-61A21BE96462}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {74214F7E-CCDF-4CFA-80ED-7A101FB1B289}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{132D4F51-7A3F-489C-9849-EE14E68C8CF7} = {F141B465-B727-4A67-8837-9442EE7E5FE1}
+		{9414C58B-959E-4EFF-9D34-61A21BE96462} = {F141B465-B727-4A67-8837-9442EE7E5FE1}
 	EndGlobalSection
 EndGlobal

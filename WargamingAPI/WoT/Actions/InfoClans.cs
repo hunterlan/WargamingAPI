@@ -24,7 +24,7 @@ namespace WargamingAPI.WoT.Actions
             string finalUrlRequest = string.Concat(clanLink, typesInqury[0],
                 "application_id=", application_id, "&search=", search);
 
-            string response = Request.GetResponse(finalUrlRequest);
+            string response = Utils.GetResponse(finalUrlRequest);
             dynamic parsed = JsonConvert.DeserializeObject(response);
             string status = parsed.status;
 
@@ -60,7 +60,7 @@ namespace WargamingAPI.WoT.Actions
             string finalUrlRequest = string.Concat(clanLink, typesInqury[1],
                "application_id=", application_id, "&clan_id=", clan.ClanId);
 
-            string response = Request.GetResponse(finalUrlRequest);
+            string response = Utils.GetResponse(finalUrlRequest);
             dynamic parsed = JsonConvert.DeserializeObject(response);
             string status = parsed.status;
 
@@ -71,18 +71,18 @@ namespace WargamingAPI.WoT.Actions
                 info.LeaderId = (int)parsed["data"][strClanId]["leader_id"];
                 info.LeaderName = parsed["data"][strClanId]["leader_name"];
                 info.Color = parsed["data"][strClanId]["color"];
-                info.UpdatedAt = Request.ConvertFromTimestamp((int)parsed["data"][strClanId]["updated_at"]);
+                info.UpdatedAt = Utils.ConvertFromTimestamp((int)parsed["data"][strClanId]["updated_at"]);
                 info.Tag = parsed["data"][strClanId]["tag"];
                 info.Name = parsed["data"][strClanId]["name"];
                 info.Motto = parsed["data"][strClanId]["motto"];
                 info.CreatorName = parsed["data"][strClanId]["creator_name"];
                 info.CreatorId = info.LeaderId;
-                info.CreatedAt = Request.ConvertFromTimestamp((int)parsed["data"][strClanId]["created_at"]);
+                info.CreatedAt = Utils.ConvertFromTimestamp((int)parsed["data"][strClanId]["created_at"]);
                 info.MembersCount = (int)parsed["data"][strClanId]["members_count"];
                 info.DescriptionHtml = parsed["data"][strClanId]["description_html"];
                 info.Description = parsed["data"][strClanId]["description"];
                 info.AcceptsJoinRequests = (bool)parsed["data"][strClanId]["accepts_join_requests"];
-                info.RenamedAt = Request.ConvertFromTimestamp((int)parsed["data"][strClanId]["renamed_at"]);
+                info.RenamedAt = Utils.ConvertFromTimestamp((int)parsed["data"][strClanId]["renamed_at"]);
                 info.OldTag = parsed["data"][strClanId]["old_tag"];
                 info.OldName = parsed["data"][strClanId]["old_name"];
                 info.IsClanDisbanded = (bool)parsed["data"][strClanId]["is_clan_disbanded"];
@@ -95,7 +95,7 @@ namespace WargamingAPI.WoT.Actions
                         Role = parsed["data"][strClanId]["leader_id"]["members"][i]["role"],
                         Role_i18n = parsed["data"][strClanId]["leader_id"]["members"][i]["role_i18n"],
                         JoinedAt =
-                        Request.ConvertFromTimestamp
+                        Utils.ConvertFromTimestamp
                         ((int)parsed["data"][strClanId]["leader_id"]["members"][i]["joined_at"]),
                         AccountId = (int)parsed["data"][strClanId]["leader_id"]["members"][i]["account_id"],
                         AccountName = parsed["data"][strClanId]["leader_id"]["members"][i]["account_name"]

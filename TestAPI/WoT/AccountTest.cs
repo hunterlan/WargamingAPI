@@ -75,8 +75,9 @@ namespace TestAPI.WoT
 				CreatedAt = new System.DateTime(2014, 6, 1, 18, 24, 56)
 			};
 
-			PublicAccountInfo realInfo = accounts.GetPPA(apiKey, player);
-			Assert.IsTrue(expectedInfo.Equals(realInfo));
+			var realInfo = accounts.GetPPA(apiKey, player);
+			Assert.IsTrue(realInfo.Player.AccountId == expectedInfo.Player.AccountId &&
+			              realInfo.CreatedAt == expectedInfo.CreatedAt);
 		}
 
 		[Test]

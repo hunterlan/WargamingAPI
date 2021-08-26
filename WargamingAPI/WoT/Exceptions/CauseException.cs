@@ -6,6 +6,12 @@ namespace WargamingAPI.WoT.Exceptions
 {
 	public class CauseException
 	{
+		/// <summary>
+		/// Cause exception, if getting data failed
+		/// </summary>
+		/// <param name="error">Type error</param>
+		/// <exception cref="SearchException">Throws when find a message</exception>
+		/// <exception cref="Exception">If message wasn't in the list</exception>
 		public void Cause(string error)
 		{
 			XMLErrors init = new();

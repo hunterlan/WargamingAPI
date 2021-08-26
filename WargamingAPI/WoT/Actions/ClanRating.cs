@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using WargamingAPI.Models.Clans;
 using WargamingAPI.WoT.Exceptions;
 using WargamingAPI.WoT.Models.Clans;
 
@@ -9,46 +10,57 @@ namespace WargamingAPI.WoT.Actions
 {
 	public class ClanRating
 	{
-		List<string> _rankFields;
-		List<int> _avaliableDates;
-		public readonly string _clanRatingLink;
-		public readonly List<string> typesInqury;
+		private readonly string _clanRatingLink;
+		private readonly List<string> _requestTypes;
 
+		/// <summary>
+		/// Init links and types of requests.
+		/// </summary>
 		public ClanRating()
 		{
-			_rankFields = new List<string>();
-			_avaliableDates = new List<int>();
 			_clanRatingLink = "https://api.worldoftanks.ru/wot/clanratings/";
-			typesInqury = new List<string>() { "types/?", "dates/?", "clans/?", "neighbors/?", "top/?" };
+			_requestTypes = new List<string> { "types/?", "dates/?", "clans/?", "neighbors/?", "top/?" };
 		}
 
-		public void GetRankFields(string application_id)
+		/// <summary>
+		/// Method returns list of types of rating.
+		/// </summary>
+		/// <param name="applicationId">Application key</param>
+		/// <returns>List of strings, which contain all types of rating</returns>
+		public List<string> GetRankFields(string applicationId)
 		{
-			string finalUrlRequest = string.Concat(_clanRatingLink, typesInqury[0],
-				"application_id=", application_id);
+			List<string> rankFields = new();
+			var finalUrlRequest = string.Concat(_clanRatingLink, _requestTypes[0],
+				"application_id=", applicationId);
 
-			string response = Utils.GetResponse(finalUrlRequest);
+			var response = Utils.GetResponse(finalUrlRequest);
 			dynamic parsed = JsonConvert.DeserializeObject(response);
-			string status = parsed.status;
+			string status = parsed?.status;
 
 			if(status == "ok")
 			{
-				_rankFields = (List<string>)parsed["data"]["all"];
+				rankFields = (List<string>)parsed["data"]["all"];
 			}
 			else
 			{
-				new CauseException().Cause(parsed.error.message);
+				new CauseException().Cause(parsed?.error.message);
 			}
+
+			return rankFields;
 		}
 
-		public void GetAvailabeDate(string application_id, int? limit)
+		/// <summary>
+		/// Method returns dates with available rating data.
+		/// </summary>
+		/// <param name="applicationId">Application key</param>
+		/// <param name="limit">Count of returned values, but not bigger, than 365.
+		/// Otherwise, default value is 7.</param>
+		/// <returns>List of timestamp integers</returns>
+		public List<int> GetAvailableDate(string applicationId, int limit = 7)
 		{
-			string finalUrlRequest = string.Concat(_clanRatingLink, typesInqury[0],
-				"application_id=", application_id);
-			if(limit != null)
-			{
-				finalUrlRequest = string.Concat(finalUrlRequest, "&limit=", limit.ToString());
-			}
+			List<int> availableDates = new();
+			var finalUrlRequest = string.Concat(_clanRatingLink, _requestTypes[0],
+				"application_id=", applicationId, "&limit=", limit.ToString());
 
 			string response = Utils.GetResponse(finalUrlRequest);
 			dynamic parsed = JsonConvert.DeserializeObject(response);
@@ -56,19 +68,28 @@ namespace WargamingAPI.WoT.Actions
 
 			if (status == "ok")
 			{
-				_avaliableDates = (List<int>)parsed["data"]["all"];
+				availableDates = (List<int>)parsed["data"]["all"];
 			}
 			else
 			{
 				new CauseException().Cause(parsed.error.message);
 			}
+
+			return availableDates;
 		}
 
-		public List<Rating> GetRatingClans(string application_id, Clan clan)
+		/// <summary>
+		/// Method returns clan's rating.
+		/// </summary>
+		/// <param name="applicationId">Application key</param>
+		/// <param name="clan">Specified <see cref="Clan"/>, for getting rating. To get it, see
+		/// <see cref="InfoClans.GetClans"/></param>
+		/// <returns>List of strings, which contain all types of rating</returns>
+		public List<Rating> GetRatingClans(string applicationId, Clan clan)
 		{
 			List<Rating> ratingsOfClan = new();
-			string finalUrlRequest = string.Concat(_clanRatingLink, typesInqury[0],
-			   "application_id=", application_id, "&clan_id=", clan.ClanId.ToString());
+			string finalUrlRequest = string.Concat(_clanRatingLink, _requestTypes[0],
+			   "application_id=", applicationId, "&clan_id=", clan.ClanId.ToString());
 
 			string response = Utils.GetResponse(finalUrlRequest);
 			dynamic parsed = JsonConvert.DeserializeObject(response);
@@ -76,15 +97,15 @@ namespace WargamingAPI.WoT.Actions
 
 			if(status == "ok")
 			{
-				GetRankFields(application_id);
-				foreach(string rank_field in _rankFields)
+				var rankFields = GetRankFields(applicationId);
+				foreach (var rankField in rankFields)
 				{
 					Rating clanRating = new()
 					{
-						Rank = parsed["data"][clan.ClanId][rank_field]["rank"],
-						RankDelta = parsed["data"][clan.ClanId][rank_field]["rank_delta"],
-						Value = parsed["data"][clan.ClanId][rank_field]["value"],
-						NameRating = rank_field
+						Rank = parsed["data"][clan.ClanId][rankField]["rank"],
+						RankDelta = parsed["data"][clan.ClanId][rankField]["rank_delta"],
+						Value = parsed["data"][clan.ClanId][rankField]["value"],
+						NameRating = rankField
 					};
 
 					ratingsOfClan.Add(clanRating);
@@ -97,12 +118,16 @@ namespace WargamingAPI.WoT.Actions
 
 			return ratingsOfClan;
 		}
-
-		//Something strange in this function API. It returns nothing. 
+		
+		/// <summary>
+		/// Method will return top clans for specified field.
+		/// Work in progress.
+		/// </summary>
 		public void GetTopClans(string application_id, string rank_filed, int date)
 		{
+			//Something strange in this function API. It returns nothing. 
 			List<Rating> ratingsOfClan = new();
-			string finalUrlRequest = string.Concat(_clanRatingLink, typesInqury[0],
+			string finalUrlRequest = string.Concat(_clanRatingLink, _requestTypes[0],
 			   "application_id=", application_id, "&rank_field=", rank_filed, "&date=", date);
 
 			string response = Utils.GetResponse(finalUrlRequest);

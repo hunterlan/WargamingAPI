@@ -23,8 +23,7 @@ namespace WargamingAPI
 
 		public static DateTime ConvertFromTimestamp(int timestamp)
 		{
-			//UTC
-			DateTime origin = DateTime.UnixEpoch;   // Use DateTime.UnixEpoch. See : https://docs.microsoft.com/en-gb/dotnet/api/system.datetime.unixepoch?view=net-5.0
+			DateTime origin = DateTime.UnixEpoch;
 			return origin.AddSeconds(timestamp);
 		}
 	}

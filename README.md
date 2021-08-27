@@ -1,3 +1,5 @@
+[![.NET](https://github.com/hunterlan/WargamingAPI/actions/workflows/dotnet.yml/badge.svg)](https://github.com/hunterlan/WargamingAPI/actions/workflows/dotnet.yml)
+
 # WargamingAPI
 It's unoffical library of WargamingAPI on .NET Core. With it, you shouldn't write URL - request for getting data. You only have to call methods from it. 
 

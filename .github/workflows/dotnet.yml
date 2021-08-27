@@ -18,7 +18,7 @@ jobs:
           echo API_START="<?xml version="1.0" encoding="utf-8"?><wot><apiKey>" >> data.xml
           echo API_KEY=${{ secrets.TEST_WARGAMING_API }} >> data.xml
           echo API_END="</apiKey></wot>"
-          ls data.xml
+          pwd data.xml
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1

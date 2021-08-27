@@ -26,7 +26,7 @@ jobs:
           touch ./TestAPI/data.xml
           echo API_START="<?xml version="1.0" encoding="utf-8"?><wot><apiKey>" >> ./TestAPI/data.xml
           echo API_KEY=${{ secrets.TEST_WARGAMING_API }} >> ./TestAPI/data.xml
-          echo API_END="</apiKey></wot>"
-          ls ./TestAPI/
+          echo API_END="</apiKey></wot>" >> ./TestAPI/data.xml
+          cat ./TestAPI/data.xml
     - name: Test
       run: dotnet test --no-build --verbosity normal

@@ -24,7 +24,7 @@ jobs:
     - name: Create test file
       run: |
           touch ./TestAPI/data.xml
-          echo "<?xml version="1.0" encoding="utf-8"?><wot><apiKey>" >> ./TestAPI/data.xml
+          echo "<?xml version=\"1.0\" encoding=\"utf-8\"?><wot><apiKey>" >> ./TestAPI/data.xml
           echo ${{ secrets.TEST_WARGAMING_API }} >> ./TestAPI/data.xml
           echo "</apiKey></wot>" >> ./TestAPI/data.xml
           cat ./TestAPI/data.xml

@@ -28,5 +28,7 @@ jobs:
           echo ${{ secrets.TEST_WARGAMING_API }} >> ./TestAPI/data.xml
           echo "</apiKey></wot>" >> ./TestAPI/data.xml
           cat ./TestAPI/data.xml
+    - name: Copy ErrorString.xml to build folder
+      run: cp ./WargamingAPI/ErrorString.xml ./TestAPI/bin/Debug/net5.0/
     - name: Test
       run: dotnet test --no-build --verbosity normal

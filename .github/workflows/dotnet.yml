@@ -12,6 +12,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Create test file
+      run: |
+          touch data.xml
+          echo API_START="<?xml version="1.0" encoding="utf-8"?><wot><apiKey>" >> data.xml
+          echo API_KEY=${{ secrets.TEST_WARGAMING_API }} >> data.xml
+          echo API_END="</apiKey></wot>"
+          ls ./TestAPI/
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -21,14 +28,5 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Create env file
-      run: |
-          touch data.xml
-          echo API_START="<?xml version="1.0" encoding="utf-8"?><wot><apiKey>" >> data.xml
-          echo API_KEY=${{ secrets.TEST_WARGAMING_API }} >> data.xml
-          echo API_END="</apiKey></wot>"
-          pwd ./TestAPI/data.xml
-          ls .
-          ls ./TestAPI/
     - name: Test
       run: dotnet test --no-build --verbosity normal

@@ -15,10 +15,10 @@ jobs:
     - name: Create env file
       run: |
           touch data.xml
-          echo API_START="<?xml version="1.0" encoding="utf-8"?><wot><apiKey>" >> .env
-          echo API_KEY=${{ secrets.API_KEY }} >> .env
+          echo API_START="<?xml version="1.0" encoding="utf-8"?><wot><apiKey>" >> data.xml
+          echo API_KEY=${{ secrets.TEST_WARGAMING_API }} >> data.xml
           echo API_END="</apiKey></wot>"
-          cat .env
+          ls data.xml
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1

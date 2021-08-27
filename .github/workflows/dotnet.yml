@@ -28,5 +28,7 @@ jobs:
           echo API_KEY=${{ secrets.TEST_WARGAMING_API }} >> data.xml
           echo API_END="</apiKey></wot>"
           pwd ./TestAPI/data.xml
+          ls .
+          ls ./TestAPI/
     - name: Test
       run: dotnet test --no-build --verbosity normal

@@ -23,42 +23,43 @@ namespace WargamingAPI.WoT.Actions
 		/// </summary>
 		/// <param name="applicationId">Application key</param>
 		/// <param name="search">Player name search string</param>
-		/// <param name="fields">Non required fields</param>
+		/// <param name="fields">Non required fields, enumerated in API.
+		/// Key use as name, mentioned in Wargaming API site.</param>
 		/// <returns>List of <see cref="Player"/></returns>
-		public List<Player> GetPlayers(string applicationId, string search, List<string> fields)
+		public List<Player> GetPlayers(string applicationId, string search, Dictionary<string, string> fields)
 		{
 			List<Player> gotPlayers = new();
 			string finalUrlRequest = string.Concat(_accountLink, _typesInqury[0],
 				"application_id=", applicationId, "&search=", search);
-			if (fields is null)
+			if (fields is not null)
 			{
-				string response = Utils.GetResponse(finalUrlRequest);
-				dynamic parsed = JsonConvert.DeserializeObject(response);
-				string status = parsed.status;
+				foreach (var field in fields)
+				{
+					finalUrlRequest = string.Concat(finalUrlRequest, $"&{field.Key}={field.Value}");
+				}
+			}
+			
+			string response = Utils.GetResponse(finalUrlRequest);
+			dynamic parsed = JsonConvert.DeserializeObject(response);
+			string status = parsed.status;
 
-				if (status == "ok")
-				{
-					int count = parsed.meta.count;
-					for (int i = 0; i < count; i++)
-					{
-						Player player = new()
-						{
-							Nickname = parsed.data[i].nickname,
-							AccountId = parsed.data[i].account_id
-						};
-						gotPlayers.Add(player);
-					}
-				}
-				else
-				{
-					new CauseException().Cause((string)parsed.error.message);
-				}
-			}
-/*			else
+			if (status == "ok")
 			{
-				//TO-DO: Do non required fields
+				int count = parsed.meta.count;
+				for (int i = 0; i < count; i++)
+				{
+					Player player = new()
+					{
+						Nickname = parsed.data[i].nickname,
+						AccountId = parsed.data[i].account_id
+					};
+					gotPlayers.Add(player);
+				}
 			}
-*/
+			else
+			{
+				new CauseException().Cause((string)parsed.error.message);
+			}
 
 			return gotPlayers;
 		}
